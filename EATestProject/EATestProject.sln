@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAAutoFramework", "EATestProject\EAAutoFramework.csproj", "{629858CE-0977-4478-831D-6127A638D656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAEmployeeTest", "EAEmployeeTest\EAEmployeeTest.csproj", "{42A06D1C-C7C4-4E57-87C8-8250650E8C42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{629858CE-0977-4478-831D-6127A638D656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629858CE-0977-4478-831D-6127A638D656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629858CE-0977-4478-831D-6127A638D656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629858CE-0977-4478-831D-6127A638D656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A06D1C-C7C4-4E57-87C8-8250650E8C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A06D1C-C7C4-4E57-87C8-8250650E8C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A06D1C-C7C4-4E57-87C8-8250650E8C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A06D1C-C7C4-4E57-87C8-8250650E8C42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02A68C3C-BF11-49C7-A024-E0ACEFD8C56D}
+	EndGlobalSection
+EndGlobal
