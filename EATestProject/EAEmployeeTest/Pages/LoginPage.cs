@@ -1,17 +1,17 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-
+using SeleniumExtras.PageObjects;
+using EAAutoFramework.Base;
 
 namespace EAEmployeeTest.Pages
 {
-    class LoginPage
+    class LoginPage : BasePage
     {
         //Initialise login page
-        public LoginPage(IWebDriver driver)
+        public LoginPage(IWebDriver driver) : base(driver)
         {
             PageFactory.InitElements(driver, this);
         }
-        
+
         //Objects for login page
         [FindsBy(How = How.LinkText, Using = "Login")]
         public IWebElement lnkLogin { get; set; }

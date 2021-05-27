@@ -1,15 +1,14 @@
-﻿using EAEmployeeTest.Pages;
+using EAEmployeeTest.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
 
 namespace EAEmployeeTest
 {
     [TestClass]
     public class UnitTest1
     {
-        string url = "http://eaapp.somee.com";        
+        string url = "http://eaapp.somee.com";
         private IWebDriver _driver;
 
         [TestMethod]
@@ -35,7 +34,7 @@ namespace EAEmployeeTest
             page.lnkLogin.Click();
             page.txtUserName.SendKeys("admin");
             page.txtPassword.SendKeys("password");
-            page.btnLogin.Submit();      
+            page.btnLogin.Submit();
         }
     }
 }
