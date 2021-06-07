@@ -6,11 +6,6 @@ namespace EAEmployeeTest.Pages
 {
     class LoginPage : BasePage
     {
-        //Initialise login page
-        public LoginPage(IWebDriver driver) : base(driver)
-        {
-            PageFactory.InitElements(driver, this);
-        }
 
         //Objects for login page
         [FindsBy(How = How.LinkText, Using = "Login")]
