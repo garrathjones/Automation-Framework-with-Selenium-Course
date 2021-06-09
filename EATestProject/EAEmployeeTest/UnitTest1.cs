@@ -16,25 +16,13 @@ namespace EAEmployeeTest
         {
             DriverContext.Driver = new ChromeDriver();
             DriverContext.Driver.Navigate().GoToUrl(url);
-            Login();
-        }
-
-        public void Login()
-        {
-            ////click link for "Log in" Page
-            //_driver.FindElement(By.LinkText("Login")).Click();
-            ////enter username
-            //_driver.FindElement(By.Id("UserName")).SendKeys("admin");
-            ////enter password
-            //_driver.FindElement(By.Id("Password")).SendKeys("password");
-            ////click login
-            //_driver.FindElement(By.CssSelector(".btn-default")).Submit();
 
             LoginPage page = new LoginPage();
-            page.lnkLogin.Click();
-            page.txtUserName.SendKeys("admin");
-            page.txtPassword.SendKeys("password");
-            page.btnLogin.Submit();
+            page.ClickLoginLink();
+            page.Login("admin", "password");
+
+            var employeePage = page.ClickEmployeeList();
+            employeePage.ClickCreateNew();
         }
     }
 }
