@@ -7,7 +7,7 @@ using EAAutoFramework.Base;
 namespace EAEmployeeTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest1 : Base
     {
         string url = "http://eaapp.somee.com";
 
@@ -21,8 +21,8 @@ namespace EAEmployeeTest
             page.ClickLoginLink();
             page.Login("admin", "password");
 
-            var employeePage = page.ClickEmployeeList();
-            employeePage.ClickCreateNew();
+            CurrentPage = page.ClickEmployeeList();
+            ((EmployeePage)CurrentPage).ClickCreateNew();
         }
     }
 }
