@@ -17,5 +17,7 @@ namespace EAAutoFramework.Base
                 _driver = value;
             }
         }
+
+        public static Browser Browser { get; set; }
     }
 }
