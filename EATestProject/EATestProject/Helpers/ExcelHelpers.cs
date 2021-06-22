@@ -11,7 +11,7 @@ namespace EAAutoFramework.Helpers
 {
     public class ExcelHelpers
     {
-        private static List<DataCollection> dataCol = new List<DataCollection>();
+        private static List<DataCollection> _dataCol = new List<DataCollection>();
 
         public static void PopulateInCollection(string fileName)
         {
@@ -29,13 +29,14 @@ namespace EAAutoFramework.Helpers
                         colValue = table.Rows[row - 1][col].ToString()
                     };
                     //add all the details for each row
-                    dataCol.Add(dtTable);
+                    _dataCol.Add(dtTable);
                 }
             }
         }
 
-        public static DataTable ExcelToDataTable(string fileName)
+        private static DataTable ExcelToDataTable(string fileName)
         {
+            //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -55,6 +56,22 @@ namespace EAAutoFramework.Helpers
                     
                     return resultTable;
                 }
+            }
+        }
+
+        public static string ReadData(int rowNumber, string columnName)
+        {
+            try
+            {
+                //Retriving data using LINQ to reduce iterations
+                string data = (from colData in _dataCol
+                               where colData.colName == columnName && colData.rowNumber == rowNumber
+                               select colData.colValue).SingleOrDefault();
+                return data.ToString();
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }
