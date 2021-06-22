@@ -34,22 +34,28 @@ namespace EAAutoFramework.Helpers
             }
         }
 
-        private static DataTable ExcelToDataTable(string fileName)
+        public static DataTable ExcelToDataTable(string fileName)
         {
-            //open file and return as Stream
-            FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read);
-            //Createopenxmlreader via ExcelReaderFactory for .xlsx
-            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream); 
-            //Set the first row as column name
-            excelReader.IsFirstRowAsColumnNames = true;
-            //Return as DataSet
-            DataSet result = excelReader.AsDataSet();
-            //Get all the Tables
-            DataTableCollection table = result.Tables;
-            //Store it in DataTable
-            DataTable resultTable = table["Sheet1"];
+            using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                    {
+                        ConfigureDataTable = (data) => new ExcelDataTableConfiguration()
+                        {
+                            UseHeaderRow = true
+                        }
+                    });
 
-            return resultTable;
+                    //Get all the Tables
+                    DataTableCollection table = result.Tables;
+                    //Store it in DataTable
+                    DataTable resultTable = table["Sheet1"];
+                    
+                    return resultTable;
+                }
+            }
         }
     }
 
