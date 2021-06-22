@@ -40,9 +40,13 @@ namespace EAEmployeeTest
             string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
 
             ExcelHelpers.PopulateInCollection(fileName);
-            
+
+            LogHelpers.CreateLogFile();
+
             OpenBrowser(BrowserType.Chrome);
+            LogHelpers.Write("Opened browser");
             DriverContext.Browser.GoToUrl(url);
+            LogHelpers.Write("Navigated to give URL: " + url);
 
             //Login Page
             CurrentPage = GetInstance<LoginPage>();

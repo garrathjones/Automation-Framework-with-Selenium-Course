@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EAAutoFramework.Helpers
 {
@@ -36,7 +34,7 @@ namespace EAAutoFramework.Helpers
 
         private static DataTable ExcelToDataTable(string fileName)
         {
-            //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
