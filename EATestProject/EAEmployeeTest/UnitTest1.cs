@@ -46,12 +46,11 @@ namespace EAEmployeeTest
             OpenBrowser(BrowserType.Chrome);
             LogHelpers.Write("Opened browser");
             DriverContext.Browser.GoToUrl(url);
-            LogHelpers.Write("Navigated to give URL: " + url);
+            LogHelpers.Write("Navigated to given URL - " + url);
 
             //Login Page
             CurrentPage = GetInstance<LoginPage>();
             CurrentPage.As<LoginPage>().ClickLoginLink();
-            //CurrentPage.As<LoginPage>().Login("admin", "password");
             CurrentPage.As<LoginPage>().Login(ExcelHelpers.ReadData(1,"UserName"),ExcelHelpers.ReadData(1,"Password"));
 
             //Employee Page            
