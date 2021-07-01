@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EAAutoFramework.Helpers
 {
-    class HtmlTableHelper
+   public  class HtmlTableHelper
     {
         private static List<TableDataCollection> _tableDataCollections;
 
@@ -74,6 +75,47 @@ namespace EAAutoFramework.Helpers
             return columnSpecialValue;
         }
 
+        public static void PerformActionOnCell(string columnIndex, string refColumnName, string refColumnValue, string controlToOperate = null)
+        {
+            foreach(int rowNumber in GetDynamicRowNumber(refColumnName, refColumnValue))
+            {
+                var cell = (from e in _tableDataCollections
+                            where e.ColumnName == columnIndex && e.RowNumber == rowNumber
+                            select e.ColumnSpecialValues).SingleOrDefault();
+
+                //Need to operate on those controls
+                if(controlToOperate != null && cell != null)
+                {
+                    //Since based on the control type the retrieving of text changes
+                    //created this kind of control
+                    if(cell.ControlType == "hyperlink")
+                    {
+                        var returnedControl = (from c in cell.ElementCollection
+                                               where c.Text == controlToOperate
+                                               select c).SingleOrDefault();
+
+                        //ToDo: Currently only click is supported
+                        returnedControl?.Click();
+                    }
+                }
+                else
+                {
+                    cell.ElementCollection?.First().Click();
+                }
+            }
+        }
+
+        private static IEnumerable GetDynamicRowNumber(string columnName, string columnValue)
+        {
+            //dynamic row
+            foreach(var table in _tableDataCollections)
+            {
+                if(table.ColumnName == columnName && table.ColumnValue == columnValue)
+                {
+                    yield return table.RowNumber;
+                }
+            }
+        }
     }
 
     public class TableDataCollection

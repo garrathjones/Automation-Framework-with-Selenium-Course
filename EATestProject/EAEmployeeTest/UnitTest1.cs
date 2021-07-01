@@ -34,7 +34,7 @@ namespace EAEmployeeTest
         }
 
 
-            [TestMethod]
+        [TestMethod]
         public void TestMethod1()
         {
             string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
@@ -57,5 +57,35 @@ namespace EAEmployeeTest
             CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
             CurrentPage.As<EmployeePage>().ClickCreateNew();        
         }
+
+        [TestMethod]
+        public void TableOperation()
+        {
+            string fileName = Environment.CurrentDirectory.ToString() + "\\Data\\Login.xlsx";
+
+            ExcelHelpers.PopulateInCollection(fileName);
+
+            LogHelpers.CreateLogFile();
+
+            OpenBrowser(BrowserType.Chrome);
+            LogHelpers.Write("Opened browser");
+            DriverContext.Browser.GoToUrl(url);
+            LogHelpers.Write("Navigated to given URL - " + url);
+
+            //Login Page
+            CurrentPage = GetInstance<LoginPage>();
+            CurrentPage.As<LoginPage>().ClickLoginLink();
+            CurrentPage.As<LoginPage>().Login(ExcelHelpers.ReadData(1, "UserName"), ExcelHelpers.ReadData(1, "Password"));
+
+            //Employee Page            
+            CurrentPage = CurrentPage.As<LoginPage>().ClickEmployeeList();
+
+            var table = CurrentPage.As<EmployeePage>().GetEmployeeList();
+
+            HtmlTableHelper.ReadTable(table);
+            HtmlTableHelper.PerformActionOnCell("5", "Name", "Ramesh", "Edit");
+
+        }
+
     }
 }

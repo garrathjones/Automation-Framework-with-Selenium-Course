@@ -7,15 +7,23 @@ namespace EAEmployeeTest.Pages
     class EmployeePage : BasePage
     {
         [FindsBy(How = How.Name, Using = "searchTerm")]
-        public IWebElement txtSearch { get; set; }
+        IWebElement txtSearch { get; set; }
         
         [FindsBy(How = How.LinkText, Using = "Create New")]
-        public IWebElement lnkCreateNew { get; set; }
+        IWebElement lnkCreateNew { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = "table")]
+        IWebElement tblEmployeeList { get; set; }
 
         public CreateEmployeePage ClickCreateNew()
         {
             lnkCreateNew.Click();
             return new CreateEmployeePage();
+        }
+
+        public IWebElement GetEmployeeList()
+        {
+            return tblEmployeeList;
         }
     }
 }
