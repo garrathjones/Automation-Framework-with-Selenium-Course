@@ -6,13 +6,14 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Firefox;
 using System;
 using EAAutoFramework.Helpers;
+using EAAutoFramework.Config;
 
 namespace EAEmployeeTest
 {
     [TestClass]
     public class UnitTest1 : Base
     {
-        string url = "http://eaapp.somee.com";
+        string url = ConfigReader.InitialiseTest();
 
         public void OpenBrowser(BrowserType browserType = BrowserType.Chrome)
         {
